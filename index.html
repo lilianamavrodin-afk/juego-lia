@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Las aventuras de Lía</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#17233f;color:white;text-align:center}
+header{padding:28px 15px;background:linear-gradient(135deg,#482878,#147d91)}
+h1{font-size:30px;color:#ffe28a}
+main{padding:18px;max-width:650px;margin:auto}
+.card{background:#263758;border-radius:18px;padding:20px;margin:16px 0}
+button{background:#ffd66b;color:#25203d;border:0;border-radius:12px;padding:14px;margin:7px;font-size:16px;font-weight:bold;cursor:pointer}
+button:hover{background:#fff0b3}
+#juego{background:#fff4cf;color:#282344;border-radius:18px;padding:20px;margin-top:20px;min-height:180px}
+.oculto{display:none}
+</style>
+</head>
+<body>
+<header>
+<div style="font-size:48px">🌙 🗝️ 🐢</div>
+<h1>Las aventuras de Lía</h1>
+<p>¡Entra en mundos llenos de magia y secretos!</p>
+</header>
+<main>
+<div class="card">
+<h2>📚 Elige tu aventura</h2>
+<button onclick="libro(1)">🏰 El castillo de las mil puertas</button>
+<button onclick="libro(2)">🌲 El Bosque de los Susurros</button>
+</div>
+<div id="juego">
+<h2>✨ ¡Bienvenido, aventurero!</h2>
+<p>Elige un libro para comenzar.</p>
+</div>
+</main>
+<script>
+function libro(n){
+const j=document.getElementById("juego");
+if(n===1){
+j.innerHTML=`<h2>🏰 El castillo de las mil puertas</h2>
+<p>Lía y Nube han llegado a un castillo misterioso. Para avanzar, deben encontrar la llave dorada.</p>
+<button onclick="puertas()">Explorar las puertas</button>
+<button onclick="acertijo()">Resolver un acertijo</button>
+<button onclick="llave()">Encontrar la llave</button>
+<button onclick="laberinto()">Laberinto de Nube</button>`;
+}else{
+j.innerHTML=`<h2>🌲 El Bosque de los Susurros</h2>
+<p>Los árboles susurran y un sendero mágico acaba de aparecer.</p>
+<button onclick="bosque()">Entrar en el bosque</button>`;
+}
+}
+function puertas(){
+document.getElementById("juego").innerHTML=`
+<h2>🚪 Las tres puertas</h2>
+<p>Una puerta esconde una gema mágica. ¿Cuál eliges?</p>
+<button onclick="elegir(1)">Puerta azul 💙</button>
+<button onclick="elegir(2)">Puerta dorada 💛</button>
+<button onclick="elegir(3)">Puerta verde 💚</button>`;
+}
+function elegir(n){
+let bien=n===2;
+document.getElementById("juego").innerHTML=bien?
+`<h2>🎉 ¡Has encontrado la gema!</h2><p>La puerta dorada se abre y aparece una luz mágica.</p><button onclick="libro(1)">Seguir jugando</button>`:
+`<h2>✨ ¡Sigue buscando!</h2><p>Esta puerta esconde otro secreto. Prueba con otra.</p><button onclick="puertas()">Volver a las puertas</button>`;
+}
+function acertijo(){
+document.getElementById("juego").innerHTML=`
+<h2>🧩 El acertijo del guardián</h2>
+<p>Tengo dientes, pero no puedo morder. ¿Qué soy?</p>
+<button onclick="respuesta(false)">Un dragón</button>
+<button onclick="respuesta(true)">Una llave</button>
+<button onclick="respuesta(false)">Una nube</button>`;
+}
+function respuesta(ok){
+document.getElementById("juego").innerHTML=ok?
+`<h2>🌟 ¡Correcto!</h2><p>El guardián te entrega una estrella mágica.</p><button onclick="libro(1)">Continuar</button>`:
+`<h2>🤔 ¡Inténtalo otra vez!</h2><button onclick="acertijo()">Volver a pensar</button>`;
+}
+function llave(){
+document.getElementById("juego").innerHTML=`
+<h2>🔎 Encuentra la llave</h2>
+<p>Elige uno de estos cofres.</p>
+<button onclick="cofre(1)">Cofre 1 📦</button>
+<button onclick="cofre(2)">Cofre 2 📦</button>
+<button onclick="cofre(3)">Cofre 3 📦</button>`;
+}
+function cofre(n){
+document.getElementById("juego").innerHTML=n===2?
+`<h2>🗝️ ¡La llave dorada!</h2><p>¡Lo has conseguido! Nube celebra contigo.</p><button onclick="libro(1)">Otra ronda</button>`:
+`<h2>📦 ¡Casi!</h2><p>Este cofre está vacío. Prueba otro.</p><button onclick="llave()">Intentar de nuevo</button>`;
+}
+function laberinto(){
+document.getElementById("juego").innerHTML=`
+<h2>🐢 El laberinto de Nube</h2>
+<p>Nube necesita llegar a la salida. ¿Qué camino seguirá?</p>
+<button onclick="camino(1)">Camino de las flores 🌸</button>
+<button onclick="camino(2)">Camino de las piedras 🪨</button>`;
+}
+function camino(n){
+document.getElementById("juego").innerHTML=n===1?
+`<h2>🌸 ¡Salida encontrada!</h2><p>Nube ha atravesado el laberinto.</p><button onclick="libro(1)">Volver al castillo</button>`:
+`<h2>🪨 ¡Camino sin salida!</h2><p>Vamos a probar otra ruta.</p><button onclick="laberinto()">Intentar otra vez</button>`;
+}
+function bosque(){
+document.getElementById("juego").innerHTML=`
+<h2>🌲 El árbol que susurra</h2>
+<p>Una voz misteriosa pregunta: ¿qué necesitas para iluminar la oscuridad?</p>
+<button onclick="finBosque(false)">Una piedra</button>
+<button onclick="finBosque(true)">Una luz</button>`;
+}
+function finBosque(ok){
+document.getElementById("juego").innerHTML=ok?
+`<h2>✨ ¡El bosque se ilumina!</h2><p>Los árboles abren un sendero secreto.</p><button onclick="libro(2)">Seguir explorando</button>`:
+`<h2>🌫️ El bosque sigue oscuro</h2><p>Piensa en algo que pueda iluminar el camino.</p><button onclick="bosque()">Intentarlo otra vez</button>`;
+}
+</script>
+</body>
+  </html>
+  
